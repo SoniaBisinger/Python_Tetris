@@ -1,3 +1,5 @@
+import pygame
+
 class Grid:
     def __init__(self):
         self.num_rows = 20
@@ -23,3 +25,12 @@ class Grid:
         blue = (13, 64, 216)
 
         return [dark_grey, green, red, orange, yellow, purple, cyan, blue]
+
+    def draw(self, screen):
+        # dark krey if cell = 0, green if cell = 1 etc
+        for row in range(self.num_rows):
+            for cols in range(self.num_cols):
+                cell_value = self.grid[row][cols]
+                #+1 to add margin, but -1 to stay in 30px
+                cell_rect = pygame.Rect(cols*self.cell_size + 1, row*self.cell_size + 1, self.cell_size - 1, self.cell_size - 1) #(x=col, y=row, w=cell_size, h=cell_size)
+                pygame.draw.rect(screen, self.colors[cell_value], cell_rect) #(surface, color, rect)

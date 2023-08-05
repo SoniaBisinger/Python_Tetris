@@ -11,6 +11,11 @@ clock = pygame.time.Clock()
 game_grid = Grid()
 game_grid.print_grid()
 
+#random test for our grid class
+game_grid.grid[0][0] = 1
+game_grid.grid[3][5] = 4
+game_grid.grid[17][8] = 7
+
 # Game Loop
 # 1. Event Handling
 # 2. Updating Positions
@@ -22,6 +27,9 @@ while True:
             pygame.quit()
             SystemExit()
 
+    #Drawing
     screen.fill("pink")
+    game_grid.draw(screen)
+
     pygame.display.update()
     clock.tick(60) #code will run 60 times a second
