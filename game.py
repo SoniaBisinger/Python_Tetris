@@ -34,7 +34,8 @@ class Game:
 
     def rotation(self):
         self.current_block.rotate()
-
+        if self.block_inside == False:
+            self.current_block.undo_rotation()
 
     def block_inside(self):
         tiles = self.current_block.get_cell_positions()

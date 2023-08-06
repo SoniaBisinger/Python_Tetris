@@ -11,6 +11,9 @@ clock = pygame.time.Clock()
 
 game = Game()
 
+GAME_UDPATE = pygame.USEREVENT
+pygame.time.set_timer(GAME_UDPATE, 200) #trigger game every 200 milliseconds
+
 #random test for our grid class
 # game_grid.grid[0][0] = 1
 # game_grid.grid[3][5] = 4
@@ -36,6 +39,8 @@ while True:
                 game.move_down()
             if event.key == pygame.K_UP:
                 game.rotation()
+        if event.type == GAME_UDPATE:
+            game.move_down()
 
     #Drawing
     screen.fill(pink)
@@ -43,4 +48,4 @@ while True:
 
 
     pygame.display.update()
-    clock.tick(60) #code will run 60 times a second
+    clock.tick(60) #speed of the move down.. lower the number, slowly the moving of blocks.
