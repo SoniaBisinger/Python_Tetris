@@ -20,6 +20,10 @@ class Grid:
             return True
         return False
 
+    def is_empty(self, row, column):
+        if self.grid[row][column] == 0:
+            return True
+        return False
 
     def draw(self, screen):
         # dark krey if cell = 0, green if cell = 1 etc

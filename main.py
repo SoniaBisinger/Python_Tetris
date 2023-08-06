@@ -48,4 +48,4 @@ while True:
 
 
     pygame.display.update()
-    clock.tick(60) #speed of the move down.. lower the number, slowly the moving of blocks.
+    clock.tick(60) #60 fps
