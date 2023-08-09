@@ -1,6 +1,7 @@
 from grid import Grid
 from blocks import *
 import random
+import pygame
 
 class Game:
     def __init__(self):
@@ -10,6 +11,12 @@ class Game:
         self.next_block = self.get_random_block()
         self.game_over = False
         self.score = 0
+        self.stage_clear_sound = pygame.mixer.Sound("TetrisThemeMusic/08. Stage Clear.mp3")
+        self.game_over_sound = pygame.mixer.Sound("TetrisThemeMusic/18. Game Over.mp3")
+
+        pygame.mixer.music.load("TetrisThemeMusic/Bach - Minuetto in Sol minore_07.08.23.mp3")
+        pygame.mixer.music.play(-1)
+
 
     def get_random_block(self):
         if len(self.blocks) == 0:
@@ -42,9 +49,13 @@ class Game:
         self.current_block = self.next_block
         self.next_block = self.get_random_block()
         rows_cleared = self.grid.clear_full_rows()
-        self.update_score(rows_cleared, 0)
+        if rows_cleared > 0:
+            self.stage_clear_sound.play()
+            self.update_score(rows_cleared, 0)
         if self.block_fits() == False:
             self.game_over = True
+            pygame.mixer.music.stop()
+            self.game_over_sound.play()
 
     def reset(self):
         self.grid.reset()
