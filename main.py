@@ -12,7 +12,7 @@ clock = pygame.time.Clock()
 game = Game()
 
 GAME_UDPATE = pygame.USEREVENT
-pygame.time.set_timer(GAME_UDPATE, 200) #trigger game every 200 milliseconds
+pygame.time.set_timer(GAME_UDPATE, 20) #trigger game every 200 milliseconds
 
 #random test for our grid class
 # game_grid.grid[0][0] = 1
@@ -31,15 +31,18 @@ while True:
             sys.exit()
 
         if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_LEFT:
+            if game.game_over == True:
+                game.game_over = False
+                game.reset()
+            if event.key == pygame.K_LEFT and game.game_over == False:
                 game.move_left()
-            if event.key == pygame.K_RIGHT:
+            if event.key == pygame.K_RIGHT and game.game_over == False:
                 game.move_right()
-            if event.key == pygame.K_DOWN:
+            if event.key == pygame.K_DOWN and game.game_over == False:
                 game.move_down()
-            if event.key == pygame.K_UP:
+            if event.key == pygame.K_UP and game.game_over == False:
                 game.rotation()
-        if event.type == GAME_UDPATE:
+        if event.type == GAME_UDPATE and game.game_over == False:
             game.move_down()
 
     #Drawing
