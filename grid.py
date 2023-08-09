@@ -62,5 +62,5 @@ class Grid:
             for cols in range(self.num_cols):
                 cell_value = self.grid[row][cols]
                 #+1 to add margin, but -1 to stay in 30px
-                cell_rect = pygame.Rect(cols*self.cell_size + 1, row*self.cell_size + 1, self.cell_size - 1, self.cell_size - 1) #(x=col, y=row, w=cell_size, h=cell_size)
+                cell_rect = pygame.Rect(cols*self.cell_size + 11, row*self.cell_size + 11, self.cell_size - 1, self.cell_size - 1) #(x=col, y=row, w=cell_size, h=cell_size)
                 pygame.draw.rect(screen, self.colors[cell_value], cell_rect) #(surface, color, rect)
